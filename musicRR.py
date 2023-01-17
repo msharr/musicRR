@@ -54,6 +54,13 @@ def transcription_regions(ratio,data):
             transcription.append("4 4~ 4.")
     return transcription
 
+def output_clean():                             
+    tmp = [f for f in next(os.walk("Output"))[2] if '.' not in f]
+    for i in range(len(tmp)-1):
+        os.rename("Output/"+tmp[i],"Output/tmp"+str(i)+".txt")
+    for item in os.listdir("Output"):
+        os.remove("Output/"+item)
+
 def lilypond_create(transcription,file):             
     f = open (file,"w+")                 
     f.write('\\version "2.22.2"\n')
@@ -72,6 +79,7 @@ def main(patient_file,output_file):
     patient = np.loadtxt(patient_file)
     rr_ratio = calculate_ratio(patient)     #Calculates RR peak ratios: (N+1)/N
     notes = transcription_regions(rr_ratio,patient)    #Converts RR peak ratios to two event lilypond form
+    output_clean()                          #Removes old files in output folder
     lilypond_create(notes,output_file)      #Creates the output lilypond file
     os.startfile(output_file)
         
