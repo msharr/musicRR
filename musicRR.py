@@ -16,6 +16,7 @@ def calculate_ratio(data):
 def transcription_regions(ratio,data):                       
     transcription = []
     for i in range(len(ratio)-1):
+        transcription.append("\\tempo 4 = "+str(round(60000/data[i])))
         if 0.35<=ratio[i]<0.45:
             transcription.append("\\time 7/8")
             transcription.append("4.~ 4 4")
