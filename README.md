@@ -4,7 +4,7 @@ An alternative representation of RR peak data in terms of musical notation.
 
 ## Data format
 
-Place data in a text file within `patient_folder`. Defined in `index.py`
+Place data in a text file within `patient_folder`. This folder is declared in `index.py`
 
 ```
 773
