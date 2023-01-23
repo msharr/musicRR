@@ -20,10 +20,39 @@ def calculate_ratio(data, start_time):
             break
     return ratio
 
+def regions(ratio):
+    for i in range(len(ratio)-1):
+        if 0.35<=ratio[i].notes<0.45:
+            ratio[i].notes = 0.4
+        elif 0.45<=ratio[i].notes<0.55:
+            ratio[i].notes = 0.5
+        elif 0.55<=ratio[i].notes<0.675:
+            ratio[i].notes = 0.66
+        elif 0.675<=ratio[i].notes<0.775:
+            ratio[i].notess = 0.75
+        elif 0.775<=ratio[i].notes<0.9:
+            ratio[i].notes = 0.8
+        elif 0.9<=ratio[i].notes<1.125:
+            ratio[i].notes = 1
+        elif 1.125<=ratio[i].notes<1.29:
+            ratio[i].notes = 1.25
+        elif 1.29<=ratio[i].notes<1.415:
+            ratio[i].notes = 1.33
+        elif 1.415<=ratio[i].notes<1.625:
+            ratio[i].notes = 1.5
+        elif 1.625<=ratio[i].notes<1.875:
+            ratio[i].notes = 1.75
+        elif 1.875<=ratio[i].notes<2.25:
+            ratio[i].notes = 2
+        elif 2.25<=ratio[i].notes:
+            ratio[i].notes = 2.5
+    return ratio
+
 def main(patient_file, start_time):
     patient = np.loadtxt(patient_file)
-    rr_ratio = calculate_ratio(patient,start_time)   
-    return rr_ratio
+    rr_ratio = calculate_ratio(patient,start_time) 
+    patient_bars = regions(rr_ratio)  
+    return patient_bars
 
 if __name__ == "__main__":
     main()

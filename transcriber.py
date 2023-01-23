@@ -4,41 +4,41 @@ import os
 def transcription_regions(ratio):                       
     transcription = []
     for i in range(len(ratio)-1):
-        # transcription.append("\\tempo 4 = "+str(round(60000/data[i])))
-        if 0.35<=ratio[i]<0.45:
+        transcription.append("\\tempo 4 = "+str(ratio[i].tempo))
+        if ratio[i].notes == 0.4:
             transcription.append("\\time 7/8")
             transcription.append("4.~ 4 4")
-        if 0.45<=ratio[i]<0.55:
+        elif ratio[i].notes == 0.5:
             transcription.append("\\time 3/4")
             transcription.append("2 4")
-        if 0.55<=ratio[i]<0.675:
+        elif ratio[i].notes == 0.66:
             transcription.append("\\time 8/8")
             transcription.append("4.~ 4 4.")
-        if 0.675<=ratio[i]<0.775:
+        elif ratio[i].notes == 0.75:
             transcription.append("\\time 7/8")
             transcription.append("2 4.")
-        if 0.775<=ratio[i]<0.9:
+        elif ratio[i].notes == 0.8:
             transcription.append("\\time 9/8")
             transcription.append("4.~ 4 2")        
-        if 0.9<=ratio[i]<1.125:
+        elif ratio[i].notes == 1:
             transcription.append("\\time 2/2")
             transcription.append("2 2")
-        if 1.125<=ratio[i]<1.29:
+        elif ratio[i].notes == 1.25:
             transcription.append("\\time 9/8")
             transcription.append("2 4.~ 4")   
-        if 1.29<=ratio[i]<1.415:
+        elif ratio[i].notes == 1.33:
             transcription.append("\\time 7/8")
             transcription.append("4. 2")
-        if 1.415<=ratio[i]<1.625:
+        elif ratio[i].notes == 1.5:
             transcription.append("\\time 5/8")
             transcription.append("4 4.")
-        if 1.625<=ratio[i]<1.875:
+        elif ratio[i].notes == 1.75:
             transcription.append("\\time 11/8")
             transcription.append("2 4.~ 2")
-        if 1.875<=ratio[i]<2.25:
+        elif ratio[i].notes == 2:
             transcription.append("\\time 3/4")
             transcription.append("4 2")
-        if 2.25<=ratio[i]:
+        elif ratio[i].notes == 2.5:
             transcription.append("\\time 7/8")
             transcription.append("4 4~ 4.")
     return transcription
@@ -58,8 +58,8 @@ def lilypond_create(transcription,file):
     f.write("}")
 
 def main(ratio_data, output_file):
-    notes = transcription_regions(ratio_data)    #Converts RR peak ratios to two event lilypond form
-    lilypond_create(notes,output_file)      #Creates the output lilypond file
+    notes = transcription_regions(ratio_data)    
+    lilypond_create(notes,output_file)      
     os.startfile(output_file)
 
 if __name__ == "__main__":
