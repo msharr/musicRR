@@ -29,7 +29,7 @@ def regions(ratio):
         elif 0.55<=ratio[i].notes<0.675:
             ratio[i].notes = 0.66
         elif 0.675<=ratio[i].notes<0.775:
-            ratio[i].notess = 0.75
+            ratio[i].notes = 0.75
         elif 0.775<=ratio[i].notes<0.9:
             ratio[i].notes = 0.8
         elif 0.9<=ratio[i].notes<1.125:
